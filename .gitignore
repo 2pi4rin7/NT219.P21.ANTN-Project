@@ -1,1 +1,5 @@
 ./testcpabe.py
+./testdb.py
+__pycache__/
+./cloud_storage/server/__pycache__/
+./trust_server/server/__pycache__/
