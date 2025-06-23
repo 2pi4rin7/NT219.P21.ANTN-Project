@@ -20,37 +20,37 @@ def create_sample_users():
             {
                 "username": "doctor1",
                 "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "1001",
+                "ID": "2",
                 "attribute": ["doctor", "cardiology"]
             },
             {
                 "username": "nurse1",
                 "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "2001",
+                "ID": "3",
                 "attribute": ["nurse", "emergency"]
             },
             {
                 "username": "patient1",
                 "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "3001",
+                "ID": "4",
                 "attribute": ["patient"]
             },
             {
                 "username": "researcher1",
                 "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "4001",
+                "ID": "5",
                 "attribute": ["researcher", "cardiology"]
             },
             {
                 "username": "financial1",
                 "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "5001",
+                "ID": "6",
                 "attribute": ["financial"]
             },
             {
                 "username": "pharmacist1",
                 "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "6001",
+                "ID": "7",
                 "attribute": ["pharmacist"]
             }
         ]

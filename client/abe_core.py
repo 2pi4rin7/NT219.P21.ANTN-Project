@@ -32,7 +32,7 @@ class ABE:
     def __init__(self):
         self.group = PairingGroup('SS512')
         self.cpabe = HybridABEnc(CPabe_BSW07(self.group), self.group)
-        self.sign = b'DEADBEEF'
+        self.sign = b'NT219ProjectCrypto'
 
     def encrypt(self, pk, msg, policy):
         self.pk = bytesToObject(pk, self.group)
