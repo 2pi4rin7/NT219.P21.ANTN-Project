@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="form-container">
+        <form method="POST" action="/register">
+            <h2>Đăng ký người dùng mới</h2>
+
+            <input type="text" name="username" placeholder="Tên tài khoản" required>
+            <input type="password" name="password" placeholder="Mật khẩu" required>
+            <input type="text" name="attribute" placeholder="Thuộc tính (vd: doctor,admin)" required>
+
+            {% if message %}
+            <div class="success">{{ message }}</div>
+            {% endif %}
+
+            <button type="submit">Đăng ký</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -12,6 +12,12 @@ def create_sample_users():
     if users_collection.count_documents({}) == 0:
         sample_users = [
             {
+                "username": "admin",
+                "password": hashlib.sha256("password123".encode()).hexdigest(),
+                "ID": "1",
+                "attribute": ["admin"]
+            },
+            {
                 "username": "doctor1",
                 "password": hashlib.sha256("password123".encode()).hexdigest(),
                 "ID": "1001",
@@ -53,7 +59,6 @@ def create_sample_users():
     else:
         print("Users already exist.")
 
-# Xác thực người dùng
 def authenticate_user(username, password):
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
     user = users_collection.find_one({"username": username, "password": hashed_password})
