@@ -1,5 +1,21 @@
-./testcpabe.py
-./testdb.py
+# Ignore all __pycache__ directories
 __pycache__/
-./cloud_storage/server/__pycache__/
-./trust_server/server/__pycache__/
+**/__pycache__/
+
+# Ignore Python cache files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment/virtualenv folders (optional)
+venv/
+.env/
+.venv/
+
+# Ignore test scripts (optional — only if you don’t want to track these)
+testcpabe.py
+testdb.py
+
+# Ignore VSCode and PyCharm project settings (if applicable)
+.vscode/
+.idea/
