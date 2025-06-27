@@ -4,11 +4,15 @@ from functools import wraps
 import jwt
 import os
 from ast import literal_eval
+from Crypto.PublicKey import ECC
+
 
 # Sử dụng cùng SECRET_KEY với Trusted Authority trong môi trường thực tế
 # Trong ví dụ này, chúng ta sẽ sử dụng một key cố định
-SECRET_KEY = "1508a86b981913fb2f065068aa5ee3203a8366dce9505459e9683aa1171c10f7"  # Trong thực tế, nên sử dụng biến môi trường
 
+with open('./opt/jwtkey_pub.pem', 'rb') as f:
+    PUBLIC_KEY = ECC.import_key(f.read())
+PUBLIC_KEY = PUBLIC_KEY.export_key(format='PEM')
 def check_token(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -23,7 +27,7 @@ def check_token(f):
         
         try:
             # Giải mã token
-            data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+            data = jwt.decode(token, PUBLIC_KEY, algorithms=['ES256'])
             user = {
                 'user_id': data['user_id'],
                 'attribute': data['attribute']

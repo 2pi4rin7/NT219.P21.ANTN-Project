@@ -3,11 +3,15 @@ from flask import Blueprint, request, jsonify, session
 import jwt
 import datetime
 import os
+from Crypto.PublicKey import ECC
+
 
 auth_api = Blueprint('auth_api', __name__)
 
-SECRET_KEY = "1508a86b981913fb2f065068aa5ee3203a8366dce9505459e9683aa1171c10f7"
 
+with open('./opt/jwtkey_priv.pem', 'r') as f:
+    SECRET_KEY = ECC.import_key(f.read())
+SECRET_KEY = SECRET_KEY.export_key(format='PEM')
 @auth_api.route('/token', methods=['POST'])
 def get_token():
     data = request.json
@@ -18,6 +22,6 @@ def get_token():
         'user_id': data['ID'],
         'attribute': str(data['attribute']),
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)
-    }, SECRET_KEY, algorithm='HS256')
+    }, SECRET_KEY, algorithm='ES256')
     
     return token, 200
