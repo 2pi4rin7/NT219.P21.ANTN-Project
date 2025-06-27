@@ -1,4 +1,3 @@
-# client/main_app.py
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget
 from PyQt5.QtCore import pyqtSlot
 from app.login import Ui_LoginWindow
@@ -13,9 +12,8 @@ import os
 from abe_core import SelfAES, ABE, objectToBytes, bytesToObject
 from base64 import b64encode, b64decode
 
-# Cấu hình URL của các server
-TRUSTED_AUTHORITY = "http://localhost:5000"
-CLOUD_DOMAIN = "http://localhost:8080"
+TRUSTED_AUTHORITY = "https://nt219aa.eastasia.cloudapp.azure.com"
+CLOUD_DOMAIN = "https://storage.eastasia.cloudapp.azure.com"
 
 session = requests.Session()
 
@@ -38,10 +36,10 @@ class MainWindow(QMainWindow, Ui_LoginWindow):
         if response.status_code == 200:
             data = response.json()
             
-            self.uid_text = str(data['ID'])  # Set this before show_menu
+            self.uid_text = str(data['ID']) 
             
-            self.init_keys(data)             # Initialize token/keys first
-            self.show_menu()                 # Then show menu (it needs uid_text)
+            self.init_keys(data)           
+            self.show_menu()               
         else:
             self.popup(response.text)
 
@@ -57,8 +55,6 @@ class MainWindow(QMainWindow, Ui_LoginWindow):
         response = session.post(urljoin(TRUSTED_AUTHORITY, '/token'), json=data)
         self.token = response.text
         self.attribute = data['attribute']
-        print("Attributes:", self.attribute)
-        print("Token:", self.token)
         temp = []
         for attr in self.attribute:
             if attr == 'patient':
@@ -263,7 +259,6 @@ class MainWindow(QMainWindow, Ui_LoginWindow):
         enc = b64encode(aes.encrypt(file_data))
         key = aes.getKey()
         enc_key = abe.encrypt(self.pk_key, key, final_policy)
-        print(enc_key)
         enc_key = objectToBytes(enc_key, abe.group)
         enc_data = enc_key + abe.sign + enc
         return enc_data
