@@ -1,4 +1,3 @@
-# cloud_storage/server/app.py
 from flask import Flask
 from user_api import user_api
 from patient_api import patient_api

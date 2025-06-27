@@ -1,57 +1,18 @@
-# trusted_authority/server/processing.py
 from pymongo import MongoClient
 import hashlib
 import os
 
-# Kết nối MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 db = client['healthcare']
 users_collection = db['users']
-# Tạo người dùng mẫu nếu chưa tồn tại
 def create_sample_users():
     if users_collection.count_documents({}) == 0:
         sample_users = [
             {
                 "username": "admin",
-                "password": hashlib.sha256("password123".encode()).hexdigest(),
+                "password": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
                 "ID": "1",
                 "attribute": ["admin"]
-            },
-            {
-                "username": "doctor1",
-                "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "2",
-                "attribute": ["doctor", "cardiology"]
-            },
-            {
-                "username": "nurse1",
-                "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "3",
-                "attribute": ["nurse", "emergency"]
-            },
-            {
-                "username": "patient1",
-                "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "4",
-                "attribute": ["patient"]
-            },
-            {
-                "username": "researcher1",
-                "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "5",
-                "attribute": ["researcher", "cardiology"]
-            },
-            {
-                "username": "financial1",
-                "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "6",
-                "attribute": ["financial"]
-            },
-            {
-                "username": "pharmacist1",
-                "password": hashlib.sha256("password123".encode()).hexdigest(),
-                "ID": "7",
-                "attribute": ["pharmacist"]
             }
         ]
         users_collection.insert_many(sample_users)

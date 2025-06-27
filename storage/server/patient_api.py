@@ -1,4 +1,3 @@
-# cloud_storage/server/patient_api.py
 from flask import Blueprint, request, jsonify
 from abac import checker
 from authorize import check_token
@@ -20,7 +19,6 @@ def DBConnect():
 
 db = DBConnect()
 
-# Định nghĩa chính sách xem dữ liệu
 VIEW_POLICIES = {
     'health_record': ['doctor', 'nurse', 'patient'],
     'medicine_record': ['doctor', 'pharmacist', 'patient'],
@@ -28,7 +26,6 @@ VIEW_POLICIES = {
     'research_record': ['doctor', 'researcher'],
 }
 
-# Định nghĩa chính sách cập nhật dữ liệu
 UPDATE_POLICIES = {
     'health_record': ['doctor', 'nurse'],
     'medicine_record': ['doctor', 'pharmacist'],

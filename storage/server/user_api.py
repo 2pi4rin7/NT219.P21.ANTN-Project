@@ -1,4 +1,3 @@
-# cloud_storage/server/user_api.py
 from flask import Blueprint, request, jsonify
 from authorize import check_token
 
