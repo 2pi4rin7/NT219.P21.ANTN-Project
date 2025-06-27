@@ -1,4 +1,3 @@
-# client/abe_core.py
 from charm.toolbox.pairinggroup import PairingGroup
 from charm.adapters.abenc_adapt_hybrid import HybridABEnc
 from charm.schemes.abenc.abenc_bsw07 import CPabe_BSW07

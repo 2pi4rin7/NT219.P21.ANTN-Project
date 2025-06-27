@@ -1,4 +1,3 @@
-# trusted_authority/server/app.py
 from flask import Flask, session
 import os
 from login_api import login_api
@@ -11,12 +10,10 @@ app.secret_key = os.urandom(24)
 app.config["SESSION_PERMANENT"] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 
-# Đăng ký các blueprint
 app.register_blueprint(login_api)
 app.register_blueprint(auth_api)
 app.register_blueprint(gen_keys_api)
 
-# Tạo người dùng mẫu khi khởi động
 create_sample_users()
 
 if __name__ == '__main__':
